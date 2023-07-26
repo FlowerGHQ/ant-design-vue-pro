@@ -18,6 +18,8 @@ const action = Vue.directive('action', {
   inserted: function (el, binding, vnode) {
     const actionName = binding.arg
     const roles = store.getters.roles
+    debugger
+    console.log(vnode.context)
     const elVal = vnode.context.$route.meta.permission
     const permissionId = Object.prototype.toString.call(elVal) === '[object String]' && [elVal] || elVal
     roles.permissions.forEach(p => {

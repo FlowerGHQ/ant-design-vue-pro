@@ -6,7 +6,7 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="规则编号">
-                <a-input v-model="queryParam.id" placeholder=""/>
+                <a-input v-model="queryParam.id" placeholder="" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
@@ -21,12 +21,12 @@
             <template v-if="advanced">
               <a-col :md="8" :sm="24">
                 <a-form-item label="调用次数">
-                  <a-input-number v-model="queryParam.callNo" style="width: 100%"/>
+                  <a-input-number v-model="queryParam.callNo" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="更新日期">
-                  <a-date-picker v-model="queryParam.date" style="width: 100%" placeholder="请输入更新日期"/>
+                  <a-date-picker v-model="queryParam.date" style="width: 100%" placeholder="请输入更新日期" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
@@ -49,12 +49,14 @@
               </a-col>
             </template>
             <a-col :md="!advanced && 8 || 24" :sm="24">
-              <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
+              <span
+                class="table-page-search-submitButtons"
+                :style="advanced && { float: 'right', overflow: 'hidden' } || {}">
                 <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
                 <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">重置</a-button>
                 <a @click="toggleAdvanced" style="margin-left: 8px">
                   {{ advanced ? '收起' : '展开' }}
-                  <a-icon :type="advanced ? 'up' : 'down'"/>
+                  <a-icon :type="advanced ? 'up' : 'down'" />
                 </a>
               </span>
             </a-col>
@@ -63,7 +65,7 @@
       </div>
 
       <div class="table-operator">
-        <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
+        <a-button type="primary" icon="plus" @click="handleAdd" v-action:edit>新建</a-button>
         <a-dropdown v-action:edit v-if="selectedRowKeys.length > 0">
           <a-menu slot="overlay">
             <a-menu-item key="1"><a-icon type="delete" />删除</a-menu-item>
@@ -84,8 +86,7 @@
         :data="loadData"
         :alert="true"
         :rowSelection="rowSelection"
-        showPagination="auto"
-      >
+        showPagination="auto">
         <span slot="serial" slot-scope="text, record, index">
           {{ index + 1 }}
         </span>
@@ -111,9 +112,8 @@
         :loading="confirmLoading"
         :model="mdl"
         @cancel="handleCancel"
-        @ok="handleOk"
-      />
-      <step-by-step-modal ref="modal" @ok="handleOk"/>
+        @ok="handleOk" />
+      <step-by-step-modal ref="modal" @ok="handleOk" />
     </a-card>
   </page-header-wrapper>
 </template>

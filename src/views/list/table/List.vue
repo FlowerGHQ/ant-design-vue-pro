@@ -5,7 +5,7 @@
         <a-row :gutter="48">
           <a-col :md="8" :sm="24">
             <a-form-item label="规则编号">
-              <a-input v-model="queryParam.id" placeholder=""/>
+              <a-input v-model="queryParam.id" placeholder="" />
             </a-form-item>
           </a-col>
           <a-col :md="8" :sm="24">
@@ -20,12 +20,12 @@
           <template v-if="advanced">
             <a-col :md="8" :sm="24">
               <a-form-item label="调用次数">
-                <a-input-number v-model="queryParam.callNo" style="width: 100%"/>
+                <a-input-number v-model="queryParam.callNo" style="width: 100%" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="更新日期">
-                <a-date-picker v-model="queryParam.date" style="width: 100%" placeholder="请输入更新日期"/>
+                <a-date-picker v-model="queryParam.date" style="width: 100%" placeholder="请输入更新日期" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
@@ -48,12 +48,14 @@
             </a-col>
           </template>
           <a-col :md="!advanced && 8 || 24" :sm="24">
-            <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
+            <span
+              class="table-page-search-submitButtons"
+              :style="advanced && { float: 'right', overflow: 'hidden' } || {}">
               <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
               <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
               <a @click="toggleAdvanced" style="margin-left: 8px">
                 {{ advanced ? '收起' : '展开' }}
-                <a-icon :type="advanced ? 'up' : 'down'"/>
+                <a-icon :type="advanced ? 'up' : 'down'" />
               </a>
             </span>
           </a-col>
@@ -64,16 +66,6 @@
     <div class="table-operator">
       <a-button type="primary" icon="plus" @click="handleEdit()">新建</a-button>
       <a-button type="dashed" @click="tableOption">{{ optionAlertShow && '关闭' || '开启' }} alert</a-button>
-      <a-dropdown v-action:edit v-if="selectedRowKeys.length > 0">
-        <a-menu slot="overlay">
-          <a-menu-item key="1"><a-icon type="delete" />删除</a-menu-item>
-          <!-- lock | unlock -->
-          <a-menu-item key="2"><a-icon type="lock" />锁定</a-menu-item>
-        </a-menu>
-        <a-button style="margin-left: 8px">
-          批量操作 <a-icon type="down" />
-        </a-button>
-      </a-dropdown>
     </div>
 
     <s-table
@@ -83,8 +75,7 @@
       :columns="columns"
       :data="loadData"
       :alert="options.alert"
-      :rowSelection="options.rowSelection"
-    >
+      :rowSelection="options.rowSelection">
       <span slot="serial" slot-scope="text, record, index">
         {{ index + 1 }}
       </span>
@@ -126,6 +117,7 @@ export default {
   },
   data () {
     return {
+
       mdl: {},
       // 高级搜索 展开/关闭
       advanced: false,
@@ -196,6 +188,7 @@ export default {
     getRoleList({ t: new Date() })
   },
   methods: {
+
     tableOption () {
       if (!this.optionAlertShow) {
         this.options = {
@@ -238,3 +231,50 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.risk-tab-top {
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: relative;
+  justify-content: center;
+
+  .risk-tab-cont {
+    cursor: pointer;
+
+    width: 71px;
+    text-align: center;
+    font-size: 16px;
+    height: 28px;
+    margin: auto 25px;
+    box-sizing: border-box;
+  }
+
+  .risk-active {
+    color: #00ffff;
+  }
+
+  .risk-active-line {
+    width: 71px;
+    height: 2px;
+    background: rgba(0, 255, 255, 1);
+    position: absolute;
+    top: 28px;
+    left: 166px;
+    transition: all 0.3s ease;
+  }
+
+  .risk-active-line-f {
+    left: 166px;
+  }
+
+  .risk-active-line-r {
+    left: 288px;
+  }
+}
+
+.risk-cont {
+  color: #fff;
+}
+</style>
