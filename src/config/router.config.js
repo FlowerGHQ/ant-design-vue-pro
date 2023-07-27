@@ -334,6 +334,21 @@ export const asyncRouterMap = [
             ]
           }
         ]
+      },
+      {
+        path: '/example',
+        name: 'example',
+        component: RouteView,
+        meta: { title: 'example', icon: 'slack', permission: ['dashboard'] },
+        redirect: '/example/example-css',
+        children: [
+          {
+            path: '/example/example-css',
+            name: 'exampleCss',
+            component: () => import('@/views/exampleCss'),
+            meta: { title: 'IconSelector', icon: 'tool', keepAlive: true, permission: ['dashboard'] }
+          }
+        ]
       }
     ]
   },
